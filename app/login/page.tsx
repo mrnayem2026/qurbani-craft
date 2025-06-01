@@ -1,57 +1,19 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
-import Image from "next/image"
-import Link from "next/link"
-import { useSupabase } from "@/components/supabase-provider"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { toast } from "@/components/ui/use-toast"
+import Image from "next/image";
+import Link from "next/link";
+import { useSupabase } from "@/components/supabase-provider";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function LoginPage() {
-  const router = useRouter()
-  const { supabase, isLoading } = useSupabase()
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [authLoading, setAuthLoading] = useState(false)
-
-  const handleSignIn = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setAuthLoading(true)
-
-    try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
-
-      if (error) {
-        toast({
-          variant: "destructive",
-          title: "Sign in failed",
-          description: error.message,
-        })
-      } else {
-        toast({
-          title: "Sign in successful",
-          description: "Redirecting to dashboard...",
-        })
-        router.push("/dashboard")
-      }
-    } catch (error) {
-      console.error("Error signing in:", error)
-      toast({
-        variant: "destructive",
-        title: "Sign in failed",
-        description: "An unexpected error occurred.",
-      })
-    } finally {
-      setAuthLoading(false)
-    }
-  }
+  const { supabase, isLoading } = useSupabase();
 
   const handleGoogleLogin = async () => {
     await supabase.auth.signInWithOAuth({
@@ -59,8 +21,8 @@ export default function LoginPage() {
       options: {
         redirectTo: `${window.location.origin}/auth/callback`,
       },
-    })
-  }
+    });
+  };
 
   // Show loading state while checking authentication
   if (isLoading) {
@@ -68,7 +30,7 @@ export default function LoginPage() {
       <div className="flex min-h-screen items-center justify-center p-4">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
       </div>
-    )
+    );
   }
 
   return (
@@ -76,55 +38,25 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <Link href="/" className="inline-block">
-            <Image src="/placeholder-logo.svg" alt="TextBackdrop Logo" width={48} height={48} className="mx-auto h-12 w-12" />
+            <Image
+              src="/placeholder-logo.svg"
+              alt="QurbaniMeme Logo"
+              width={48}
+              height={48}
+              className="mx-auto h-12 w-12"
+            />
           </Link>
-          <CardTitle className="mt-4 text-3xl font-bold">Welcome Back</CardTitle>
+          <CardTitle className="mt-4 text-3xl font-bold">
+            Welcome Back
+          </CardTitle>
           <CardDescription>Sign in to your account to continue</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSignIn} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input 
-                id="email" 
-                type="email" 
-                placeholder="Enter your email" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input 
-                id="password" 
-                type="password" 
-                placeholder="Enter your password" 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-            <Button type="submit" className="w-full" disabled={authLoading}>
-              {authLoading ? "Signing in..." : "Sign In"}
-            </Button>
-          </form>
-          
           <div className="mt-4">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-white dark:bg-gray-900 px-2 text-gray-500 dark:text-gray-400">Or continue with</span>
-              </div>
-            </div>
-            
-            <Button 
-              variant="outline" 
-              className="w-full mt-4" 
+            <Button
+              variant="outline"
+              className="w-full mt-4"
               onClick={handleGoogleLogin}
-              disabled={authLoading}
             >
               <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
                 <path
@@ -148,16 +80,8 @@ export default function LoginPage() {
               Google
             </Button>
           </div>
-          
-          <div className="mt-6 text-center text-sm">
-            Don't have an account?{" "}
-            <Link href="/" className="text-primary hover:underline">
-              Sign up
-            </Link>
-          </div>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
-

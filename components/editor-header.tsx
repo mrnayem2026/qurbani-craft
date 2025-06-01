@@ -46,7 +46,7 @@ export function EditorHeader({ image, onAddText }: EditorHeaderProps) {
 
       // Create a download link
       const link = document.createElement("a");
-      link.download = `textbackdrop-${Date.now()}.png`;
+      link.download = `QurbaniMeme-${Date.now()}.png`;
       link.href = canvas.toDataURL("image/png");
       link.click();
 

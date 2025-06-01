@@ -15,107 +15,24 @@ import Link from "next/link"
 
 export default function LandingPage() {
   const { supabase } = useSupabase()
-  const { toast } = useToast()
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [loading, setLoading] = useState(false)
+
 
   const handleGoogleLogin = async () => {
-    await supabase.auth.signInWithOAuth({
+  const p =  await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo: `${window.location.origin}/auth/callback`,
       },
     })
+    console.log(p)
   }
 
-  const handleSignUp = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-
-    try {
-      const { error, data } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback`,
-        },
-      })
-
-      if (error) {
-        toast({
-          variant: "destructive",
-          title: "Sign up failed",
-          description: error.message,
-        })
-      } else {
-        // Check if user was created and needs email verification
-        if (data?.user?.identities?.length === 0) {
-          toast({
-            variant: "destructive",
-            title: "Sign up failed",
-            description: "Email already in use. Please try logging in instead.",
-          })
-        } else {
-          toast({
-            title: "Sign up successful",
-            description: "You can now log in with your credentials.",
-          })
-        }
-      }
-    } catch (error) {
-      console.error("Error signing up:", error)
-      toast({
-        variant: "destructive",
-        title: "Sign up failed",
-        description: "An unexpected error occurred.",
-      })
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const handleSignIn = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-
-    try {
-      const { error, data } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
-
-      if (error) {
-        toast({
-          variant: "destructive",
-          title: "Sign in failed",
-          description: error.message,
-        })
-      } else {
-        toast({
-          title: "Sign in successful",
-          description: "Redirecting to editor...",
-        })
-        // Force a refresh to trigger the redirect in the root page
-        window.location.href = "/editor"
-      }
-    } catch (error) {
-      console.error("Error signing in:", error)
-      toast({
-        variant: "destructive",
-        title: "Sign in failed",
-        description: "An unexpected error occurred.",
-      })
-    } finally {
-      setLoading(false)
-    }
-  }
   
   return (
     <div className="flex flex-col min-h-screen">
       <header className="px-4 lg:px-6 h-14 flex items-center">
         <div className="flex w-full justify-between">
-          <h1 className="text-2xl font-bold">TextBackdrop</h1>
+          <h1 className="text-2xl font-bold">QurbaniMeme</h1>
         </div>
       </header>
       <main className="flex-1">
@@ -153,83 +70,6 @@ export default function LandingPage() {
                     <CardDescription>Sign in or create an account to continue</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Tabs defaultValue="signin" className="w-full">
-                      <TabsList className="grid w-full grid-cols-2">
-                        <TabsTrigger value="signin">Sign In</TabsTrigger>
-                        <TabsTrigger value="signup">Sign Up</TabsTrigger>
-                      </TabsList>
-                      <TabsContent value="signin">
-                        <form onSubmit={handleSignIn} className="space-y-4 mt-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="email">Email</Label>
-                            <Input
-                              id="email"
-                              type="email"
-                              placeholder="your@email.com"
-                              value={email}
-                              onChange={(e) => setEmail(e.target.value)}
-                              required
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <div className="flex items-center justify-between">
-                              <Label htmlFor="password">Password</Label>
-                              <Link href="/reset-password" className="text-sm text-primary hover:underline">
-                                Forgot password?
-                              </Link>
-                            </div>
-                            <Input
-                              id="password"
-                              type="password"
-                              value={password}
-                              onChange={(e) => setPassword(e.target.value)}
-                              required
-                            />
-                          </div>
-                          <Button type="submit" className="w-full" disabled={loading}>
-                            {loading ? "Signing in..." : "Sign In"}
-                          </Button>
-                        </form>
-                      </TabsContent>
-                      <TabsContent value="signup">
-                        <form onSubmit={handleSignUp} className="space-y-4 mt-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="email">Email</Label>
-                            <Input
-                              id="email"
-                              type="email"
-                              placeholder="your@email.com"
-                              value={email}
-                              onChange={(e) => setEmail(e.target.value)}
-                              required
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="password">Password</Label>
-                            <Input
-                              id="password"
-                              type="password"
-                              value={password}
-                              onChange={(e) => setPassword(e.target.value)}
-                              required
-                            />
-                          </div>
-                          <Button type="submit" className="w-full" disabled={loading}>
-                            {loading ? "Signing up..." : "Sign Up"}
-                          </Button>
-                        </form>
-                      </TabsContent>
-                    </Tabs>
-
-                    <div className="relative my-4">
-                      <div className="absolute inset-0 flex items-center">
-                        <span className="w-full border-t" />
-                      </div>
-                      <div className="relative flex justify-center text-xs uppercase">
-                        <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
-                      </div>
-                    </div>
-
                     <Button variant="outline" className="w-full" onClick={handleGoogleLogin}>
                       <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
                         <path
@@ -342,7 +182,7 @@ export default function LandingPage() {
       </main>
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
         <p className="text-xs text-gray-500 dark:text-gray-400">
-          © {new Date().getFullYear()} TextBackdrop. All rights reserved.
+          © {new Date().getFullYear()} QurbaniMeme. All rights reserved.
         </p>
       </footer>
     </div>

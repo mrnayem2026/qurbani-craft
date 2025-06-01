@@ -25,7 +25,7 @@ export default function DashboardPage() {
         setIsLoadingImages(true)
 
         // Get images from local storage
-        const storedImages = localStorage.getItem("textbackdrop_images")
+        const storedImages = localStorage.getItem("QurbaniMeme_images")
         if (storedImages) {
           setImages(JSON.parse(storedImages))
         } else {
@@ -53,7 +53,7 @@ export default function DashboardPage() {
   const handleDeleteImage = (id: string) => {
     const updatedImages = images.filter((image) => image.id !== id)
     setImages(updatedImages)
-    localStorage.setItem("textbackdrop_images", JSON.stringify(updatedImages))
+    localStorage.setItem("QurbaniMeme_images", JSON.stringify(updatedImages))
     toast({
       title: "Image deleted",
       description: "Your image has been deleted successfully.",

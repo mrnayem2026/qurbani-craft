@@ -43,12 +43,12 @@ export function DashboardHeader() {
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/logo.svg"
-            alt="TextBackdrop Logo"
+            alt="QurbaniMeme Logo"
             width={32}
             height={32}
             className="h-8 w-8"
           />
-          <span className="font-bold text-xl">TextBackdrop</span>
+          <span className="font-bold text-xl">QurbaniMeme</span>
         </Link>
         <nav className="flex items-center gap-4">
           <Button variant="outline" onClick={handleSignOut}>
