@@ -54,6 +54,7 @@ export function TextControls({
 
   const selectedLayer = selectedLayerIndex !== null ? textLayers[selectedLayerIndex] : null
 
+
   // Reset to the text tab when selecting a new layer
   useEffect(() => {
     setActiveTab("text")
