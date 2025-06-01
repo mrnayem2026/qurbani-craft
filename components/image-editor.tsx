@@ -204,8 +204,8 @@ export function ImageEditor({
         </div>
       </div>
 
-      {/* Text layers (middle layer) */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
+      {/* Text layers (top layer) */}
+      <div className="absolute inset-0 z-30 pointer-events-none">
         {textLayers.map((layer, index) => (
           <div
             key={layer.id}
@@ -244,8 +244,8 @@ export function ImageEditor({
         ))}
       </div>
 
-      {/* Foreground (image on top) */}
-      <div className="relative z-20">
+      {/* Foreground (image below text) */}
+      <div className="relative z-10">
         <div className="w-full h-auto">
           <Image
             src={image.foregroundUrl || "/placeholder.svg"}
