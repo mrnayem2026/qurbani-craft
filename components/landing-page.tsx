@@ -29,68 +29,124 @@ import {
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import homeImage from "@/public/images/home.png";
-
-function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-
-  return (
-    <Button
-      variant="outline"
-      size="icon"
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-    >
-      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-      <span className="sr-only">Toggle theme</span>
-    </Button>
-  );
-}
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  NavbarLogo,
+  NavbarButton,
+  MobileNavHeader,
+  MobileNavToggle,
+  MobileNavMenu,
+} from "@/components/ui/resizable-navbar";
+import { useState } from "react";
+import { useSupabase } from "@/components/supabase-provider";
+import { ThemeToggle } from "./dashboard/theme-toggle";
 
 export default function LandingPage() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navItems = [
+    {
+      name: "Features",
+      link: "#features",
+    },
+    {
+      name: "Start Creating",
+      link: "/dashboard",
+    },
+    {
+      name: "Contact",
+      link: "#contact",
+    },
+  ];
+  const { user, isLoading, supabase } = useSupabase();
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    window.location.href = "/";
+  };
+
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      {/* Navbar */}
-      <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
-            <MoonStar className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold text-primary">QurbaniCraft</span>
-          </div>
-          <nav className="hidden md:flex items-center gap-6">
-            <Link
-              href="#"
-              className="text-sm font-medium hover:text-primary transition-colors"
+    <div className="flex min-h-screen flex-col">
+      <>
+        <Navbar>
+          {/* Desktop Navigation */}
+          <NavBody>
+            <NavbarLogo />
+            <NavItems items={navItems} />
+            <div className="flex items-center gap-4">
+              <ThemeToggle />
+              {isLoading ? (
+                <div>Loading...</div>
+              ) : user ? (
+                <NavbarButton variant="dark" onClick={handleSignOut}>
+                  Log Out
+                </NavbarButton>
+              ) : (
+                <NavbarButton variant="dark" href="/login">
+                  Login
+                </NavbarButton>
+              )}
+
+              <NavbarButton
+                variant="primary"
+                href="https://cal.com/mostafizur-rahman-nayem-x1yiih/15min"
+              >
+                Book a call
+              </NavbarButton>
+            </div>
+          </NavBody>
+
+          {/* Mobile Navigation */}
+          <MobileNav>
+            <MobileNavHeader>
+              <NavbarLogo />
+              <MobileNavToggle
+                isOpen={isMobileMenuOpen}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              />
+            </MobileNavHeader>
+
+            <MobileNavMenu
+              isOpen={isMobileMenuOpen}
+              onClose={() => setIsMobileMenuOpen(false)}
             >
-              Home
-            </Link>
-            <Link
-              href="#features"
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Features
-            </Link>
-            <Link
-              href="#"
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Start Creating
-            </Link>
-            <Link
-              href="#"
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Contact
-            </Link>
-          </nav>
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-            <Button variant="outline" size="icon" className="md:hidden">
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </div>
-        </div>
-      </header>
+              {navItems.map((item, idx) => (
+                <a
+                  key={`mobile-link-${idx}`}
+                  href={item.link}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="relative text-neutral-600 dark:text-neutral-300"
+                >
+                  <span className="block">{item.name}</span>
+                </a>
+              ))}
+              <div className="flex items-center gap-4">
+                <ThemeToggle />
+                {isLoading ? (
+                  <div>Loading...</div>
+                ) : user ? (
+                  <NavbarButton variant="dark" onClick={handleSignOut}>
+                    Log Out
+                  </NavbarButton>
+                ) : (
+                  <NavbarButton variant="dark" href="/login">
+                    Login
+                  </NavbarButton>
+                )}
+
+                <NavbarButton
+                  variant="primary"
+                  href="https://cal.com/mostafizur-rahman-nayem-x1yiih/15min"
+                >
+                  Book a call
+                </NavbarButton>
+              </div>
+            </MobileNavMenu>
+          </MobileNav>
+        </Navbar>
+      </>
 
       <main className="flex-1">
         {/* Hero Section with Islamic Pattern Background */}
