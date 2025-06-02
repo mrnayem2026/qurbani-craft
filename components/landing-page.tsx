@@ -37,6 +37,7 @@ import MemeMubarok from "@/public/images/meme-mubarok.jpg";
 import CardEBarakah from "@/public/images/card-e-barakah.jpg";
 import MeatMate from "@/public/images/meat-mate.jpg";
 import TestimonialSection from "./testimonial-section";
+import CallToAction from "./CallToAction";
 
 export default function LandingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -178,8 +179,9 @@ export default function LandingPage() {
                 <Image
                   src={homeImage}
                   alt="QurbaniCraft Illustration"
-                  className="rounded-lg object-cover h-full transition-transform duration-300 group-hover:scale-110"
+                  className="rounded-lg object-cover h-full transition-transform duration-300 group-hover:scale-110 relative z-10"
                 />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/10 rounded-2xl blur-3xl -z-10" />
                 <audio id="hambaHumba" className="hidden">
                   <source src="/hamba-humba.mp3" type="audio/mpeg" />
                 </audio>
@@ -335,8 +337,7 @@ export default function LandingPage() {
                     Is QurbaniCraft free to use?
                   </AccordionTrigger>
                   <AccordionContent>
-                    Yes! QurbaniCraft is completely free for basic features. We
-                    offer premium options for advanced customization.
+                    Yes! QurbaniCraft is completely free to use.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2">
@@ -344,8 +345,9 @@ export default function LandingPage() {
                     Can I share my creations on social media?
                   </AccordionTrigger>
                   <AccordionContent>
-                    All memes and cards created with QurbaniCraft can be easily
-                    shared to any social media platform with a single click.
+                    Yap, All memes and cards created with QurbaniCraft can be
+                    easily shared to any social media platform with a single
+                    click.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-3">
@@ -364,9 +366,7 @@ export default function LandingPage() {
                     Do I need to create an account?
                   </AccordionTrigger>
                   <AccordionContent>
-                    No account is needed for basic features. However, creating a
-                    free account allows you to save your creations and access
-                    them across devices.
+                    Yes, creating an account is required to access all features.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -375,25 +375,12 @@ export default function LandingPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 md:py-24 bg-primary text-white">
-          <div className="container">
-            <div className="mx-auto max-w-3xl text-center">
-              <h2 className="mb-4 text-3xl font-bold tracking-tighter sm:text-4xl">
-                Ready to Make This Eid Special?
-              </h2>
-              <p className="mb-8 text-red-50 md:text-xl/relaxed">
-                Join thousands of Muslims making their Eid celebrations more
-                memorable with QurbaniCraft.
-              </p>
-              <Button
-                size="lg"
-                className="bg-white text-primary hover:bg-red-50"
-              >
-                Start Creating Now
-              </Button>
-            </div>
-          </div>
-        </section>
+        <CallToAction
+          title="Ready to Make Your Qurbani Special?"
+          description="Join thousands of Muslims creating meaningful Qurbani cards and memes. Let's make this Eid celebration more memorable together."
+          buttonText="Start Creating Now"
+          href="/dashboard"
+        />
       </main>
 
       <footer className="border-t bg-white py-6 md:py-8">
