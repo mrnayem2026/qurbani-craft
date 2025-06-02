@@ -38,6 +38,7 @@ import CardEBarakah from "@/public/images/card-e-barakah.jpg";
 import MeatMate from "@/public/images/meat-mate.jpg";
 import TestimonialSection from "./testimonial-section";
 import CallToAction from "./CallToAction";
+import QurbaniCountdown from "./qurbani-countdown";
 
 export default function LandingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -175,7 +176,7 @@ export default function LandingPage() {
                   </Button>
                 </Link>
               </div>
-              <div className="group relative cursor-pointer">
+              <div className="group relative cursor-pointer order-12">
                 <Image
                   src={homeImage}
                   alt="QurbaniCraft Illustration"
@@ -196,6 +197,7 @@ export default function LandingPage() {
                 />
               </div>
             </div>
+            <QurbaniCountdown/>
           </div>
         </section>
 
