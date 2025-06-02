@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Smile, Heart, Beef } from "lucide-react"
+import Link from "next/link"
 
 const features = [
   {
@@ -11,6 +12,7 @@ const features = [
     icon: Smile,
     gradient: "from-emerald-500 to-teal-500",
     bgGradient: "from-emerald-50 to-teal-50",
+    link: "/dashboard/meme-mubarak"
   },
   {
     id: "cards",
@@ -20,6 +22,7 @@ const features = [
     icon: Heart,
     gradient: "from-amber-500 to-orange-500",
     bgGradient: "from-amber-50 to-orange-50",
+    link: "/dashboard/card-e-barakah"
   },
   {
     id: "meat",
@@ -29,6 +32,7 @@ const features = [
     icon: Beef,
     gradient: "from-rose-500 to-pink-500",
     bgGradient: "from-rose-50 to-pink-50",
+    link: "/dashboard/meat-mate"
   },
 ]
 
@@ -60,12 +64,14 @@ export function FeatureCards() {
             </CardHeader>
 
             <CardContent className="text-center relative z-10">
-              <Button
-                className={`w-full bg-gradient-to-r ${feature.gradient} hover:shadow-lg transition-all duration-300 text-white font-semibold py-3 rounded-xl group-hover:scale-105`}
-                size="lg"
-              >
-                Create Now
-              </Button>
+              <Link href={feature.link}>
+                <Button
+                  className={`w-full bg-gradient-to-r ${feature.gradient} hover:shadow-lg transition-all duration-300 text-white font-semibold py-3 rounded-xl group-hover:scale-105`}
+                  size="lg"
+                >
+                  Create Now
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         )

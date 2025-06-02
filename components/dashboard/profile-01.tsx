@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
 import {
   LogOut,
-  MoveUpRight,
   Settings,
   CreditCard,
   FileText,
 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useToast } from "@/hooks/use-toast";
 import { useSupabase } from "../supabase-provider";
 

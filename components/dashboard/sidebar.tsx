@@ -4,6 +4,7 @@ import {
   Smile, Heart, Beef,
   HelpCircle,
   Menu,
+  LayoutDashboardIcon,
 } from "lucide-react";
 
 import Link from "next/link";
@@ -84,13 +85,16 @@ export default function Sidebar() {
             <div className="space-y-6">
               <div>
                 <div className="space-y-1">
-                  <NavItem href="#" icon={Smile}>
+                  <NavItem href="/dashboard" icon={LayoutDashboardIcon}>
+                    Dashboard
+                  </NavItem>
+                  <NavItem href="/dashboard/meme-mubarak" icon={Smile}>
                     Meme Mubarak
                   </NavItem>
-                  <NavItem href="#" icon={Heart}>
+                  <NavItem href="/dashboard/card-e-barakah" icon={Heart}>
                   Card-e-Barakah
                   </NavItem>
-                  <NavItem href="#" icon={Beef}>
+                  <NavItem href="/dashboard/meat-mate" icon={Beef}>
                   Meat Mate
                   </NavItem>
                 </div>
