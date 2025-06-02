@@ -59,7 +59,7 @@ export default function EditorPage({ params }: { params: { id: string } }) {
         setIsLoading(true)
 
         // Get images from local storage
-        const storedImages = localStorage.getItem("QurbaniMeme_images")
+        const storedImages = localStorage.getItem("QurbaniCraft_images")
         if (storedImages) {
           const images = JSON.parse(storedImages)
           const foundImage = images.find((img: ImageData) => img.id === params.id)
@@ -118,10 +118,10 @@ export default function EditorPage({ params }: { params: { id: string } }) {
       }
 
       // Save to local storage
-      const storedImages = localStorage.getItem("QurbaniMeme_images")
+      const storedImages = localStorage.getItem("QurbaniCraft_images")
       const images = storedImages ? JSON.parse(storedImages) : []
       const updatedImages = [newImage, ...images]
-      localStorage.setItem("QurbaniMeme_images", JSON.stringify(updatedImages))
+      localStorage.setItem("QurbaniCraft_images", JSON.stringify(updatedImages))
 
       setImage(newImage)
       setTextLayers([])
@@ -209,7 +209,7 @@ export default function EditorPage({ params }: { params: { id: string } }) {
 
     try {
       // Get images from local storage
-      const storedImages = localStorage.getItem("QurbaniMeme_images")
+      const storedImages = localStorage.getItem("QurbaniCraft_images")
       if (storedImages) {
         const images = JSON.parse(storedImages)
         const updatedImages = images.map((img: ImageData) => {
@@ -219,7 +219,7 @@ export default function EditorPage({ params }: { params: { id: string } }) {
           return img
         })
 
-        localStorage.setItem("QurbaniMeme_images", JSON.stringify(updatedImages))
+        localStorage.setItem("QurbaniCraft_images", JSON.stringify(updatedImages))
 
         // Update the current image state
         setImage({ ...image, text_layers: layers })

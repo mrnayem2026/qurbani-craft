@@ -15,7 +15,7 @@ export default function SettingsPage() {
           <Card className="mb-8">
             <CardHeader>
               <CardTitle>Application Information</CardTitle>
-              <CardDescription>About QurbaniMeme</CardDescription>
+              <CardDescription>About QurbaniCraft</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">

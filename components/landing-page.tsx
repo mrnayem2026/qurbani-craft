@@ -32,7 +32,7 @@ export default function LandingPage() {
     <div className="flex flex-col min-h-screen">
       <header className="px-4 lg:px-6 h-14 flex items-center">
         <div className="flex w-full justify-between">
-          <h1 className="text-2xl font-bold">QurbaniMeme</h1>
+          <h1 className="text-2xl font-bold">QurbaniCraft</h1>
         </div>
       </header>
       <main className="flex-1">
@@ -57,6 +57,11 @@ export default function LandingPage() {
                   Upload your images and add customizable text behind them. Adjust font, size, color, position, and
                   more.
                 </motion.p>
+                <Link href="/dashboard">
+                  <Button>
+                    Get Started
+                  </Button>
+                </Link>
               </div>
               <motion.div
                 className="mx-auto lg:mr-0"
@@ -182,7 +187,7 @@ export default function LandingPage() {
       </main>
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
         <p className="text-xs text-gray-500 dark:text-gray-400">
-          © {new Date().getFullYear()} QurbaniMeme. All rights reserved.
+          © {new Date().getFullYear()} QurbaniCraft. All rights reserved.
         </p>
       </footer>
     </div>

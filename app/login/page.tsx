@@ -40,7 +40,7 @@ export default function LoginPage() {
           <Link href="/" className="inline-block">
             <Image
               src="/placeholder-logo.svg"
-              alt="QurbaniMeme Logo"
+              alt="QurbaniCraft Logo"
               width={48}
               height={48}
               className="mx-auto h-12 w-12"

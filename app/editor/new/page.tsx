@@ -38,10 +38,10 @@ export default function NewEditorPage() {
       }
 
       // Save to local storage
-      const storedImages = localStorage.getItem("QurbaniMeme_images")
+      const storedImages = localStorage.getItem("QurbaniCraft_images")
       const images = storedImages ? JSON.parse(storedImages) : []
       const updatedImages = [newImage, ...images]
-      localStorage.setItem("QurbaniMeme_images", JSON.stringify(updatedImages))
+      localStorage.setItem("QurbaniCraft_images", JSON.stringify(updatedImages))
 
       // Redirect to the new image editor
       router.push(`/editor/${newImage.id}`)

@@ -7,7 +7,7 @@ import { SubscriptionProvider } from "@/components/subscription-provider"
 import { fonts, fontVariables } from "@/lib/fonts-config"
 
 export const metadata = {
-  title: "QurbaniMeme - Add Text Behind Images",
+  title: "QurbaniCraft - Add Text Behind Images",
   description: "Upload images and add customizable text behind them",
   generator: 'v0.dev'
 }
