@@ -22,12 +22,7 @@ import {
   Gift,
   Utensils,
   ChevronRight,
-  Menu,
-  Moon,
-  Sun,
-  BarChart2,
 } from "lucide-react";
-import { useTheme } from "next-themes";
 import homeImage from "@/public/images/home.png";
 import {
   Navbar,
@@ -43,6 +38,9 @@ import {
 import { useState } from "react";
 import { useSupabase } from "@/components/supabase-provider";
 import { ThemeToggle } from "./dashboard/theme-toggle";
+import MemeMubarok from '@/public/images/meme-mubarok.jpg'
+import CardEBarakah from '@/public/images/card-e-barakah.jpg'
+import MeatMate from '@/public/images/meat-mate.jpg'
 
 export default function LandingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -231,9 +229,9 @@ export default function LandingPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-6">
-                  <div className="aspect-video overflow-hidden rounded-lg bg-green-50">
+                  <div className="overflow-hidden rounded-lg bg-green-50">
                     <Image
-                      src="/placeholder.svg?height=200&width=400"
+                      src={MemeMubarok}
                       width={400}
                       height={200}
                       alt="Meme Mubarak Feature"
@@ -267,9 +265,9 @@ export default function LandingPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-6">
-                  <div className="aspect-video overflow-hidden rounded-lg bg-green-50">
+                  <div className="overflow-hidden rounded-lg bg-green-50">
                     <Image
-                      src="/placeholder.svg?height=200&width=400"
+                      src={CardEBarakah}
                       width={400}
                       height={200}
                       alt="Card-e-Barakah Feature"
@@ -303,13 +301,11 @@ export default function LandingPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-6">
-                  <div className="aspect-video overflow-hidden rounded-lg bg-green-50">
+                  <div className="overflow-hidden rounded-lg bg-green-50">
                     <Image
-                      src="/placeholder.svg?height=200&width=400"
-                      width={400}
-                      height={200}
+                      src={MeatMate}
                       alt="Meat Mate Feature"
-                      className="h-full w-full object-cover"
+                      className="object-cover"
                     />
                   </div>
                 </CardContent>
