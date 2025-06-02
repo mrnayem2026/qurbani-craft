@@ -383,35 +383,24 @@ export default function LandingPage() {
         />
       </main>
 
-      <footer className="border-t bg-white py-6 md:py-8">
+      <footer className="border-t py-6 md:py-8">
         <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
-          <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <MoonStar className="h-5 w-5 text-primary" />
             <span className="text-lg font-semibold text-primary">
               QurbaniCraft
             </span>
-          </div>
+          </Link>
           <p className="text-center text-sm text-gray-500 md:text-left">
             &copy; {new Date().getFullYear()} QurbaniCraft. All rights reserved.
           </p>
           <div className="flex gap-4">
             <Link
-              href="#"
-              className="text-sm text-muted-foreground hover:text-primary"
+              target="_blank"
+              href="https://x.com/mrnayem4403"
+              className="text-sm text-muted-foreground"
             >
-              Privacy
-            </Link>
-            <Link
-              href="#"
-              className="text-sm text-muted-foreground hover:text-primary"
-            >
-              Terms
-            </Link>
-            <Link
-              href="#"
-              className="text-sm text-muted-foreground hover:text-primary"
-            >
-              Contact
+              Building in public <span className="text-primary">@mrnayem4403</span>
             </Link>
           </div>
         </div>
