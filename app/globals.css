@@ -55,6 +55,23 @@
 
 }
 
+.testimonial-top::before {
+  position: absolute;
+  width: 28.75rem;
+  height: 0;
+  content: "";
+  top: 0;
+  left: 50%;
+  transform: translate(-230px, 1px);
+  border-width: 1px;
+  border-style: solid;
+  border-image: radial-gradient(#CD575D 0%, #FEF2F2 75%) 1;
+}
+
+.dark .testimonial-top::before {
+  border-image: radial-gradient(#0d0e0b 0%, #0d0e0b 75%) 1;
+}
+
 @layer base {
   * {
     @apply border-border;

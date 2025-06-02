@@ -17,12 +17,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  MoonStar,
-  Gift,
-  Utensils,
-  ChevronRight,
-} from "lucide-react";
+import { MoonStar, Gift, Utensils, ChevronRight } from "lucide-react";
 import homeImage from "@/public/images/home.png";
 import {
   Navbar,
@@ -38,9 +33,10 @@ import {
 import { useState } from "react";
 import { useSupabase } from "@/components/supabase-provider";
 import { ThemeToggle } from "./dashboard/theme-toggle";
-import MemeMubarok from '@/public/images/meme-mubarok.jpg'
-import CardEBarakah from '@/public/images/card-e-barakah.jpg'
-import MeatMate from '@/public/images/meat-mate.jpg'
+import MemeMubarok from "@/public/images/meme-mubarok.jpg";
+import CardEBarakah from "@/public/images/card-e-barakah.jpg";
+import MeatMate from "@/public/images/meat-mate.jpg";
+import TestimonialSection from "./testimonial-section";
 
 export default function LandingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -324,46 +320,7 @@ export default function LandingPage() {
         </section>
 
         {/* Testimonial Section */}
-        <section className="py-16 md:py-24 bg-red-50 dark:bg-red-950/20">
-          <div className="container">
-            <div className="mx-auto max-w-4xl">
-              <div className="relative rounded-2xl bg-white p-6 shadow-lg md:p-10">
-                {/* Islamic Border Design */}
-                <div
-                  className="absolute inset-0 border-8 border-green-100 rounded-2xl opacity-50"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(45deg, #f0fdf4 25%, transparent 25%, transparent 50%, #f0fdf4 50%, #f0fdf4 75%, transparent 75%, transparent)",
-                    backgroundSize: "10px 10px",
-                    borderImage:
-                      "repeating-linear-gradient(45deg, #047857, #047857 10px, #10b981 10px, #10b981 20px) 8",
-                  }}
-                ></div>
-                <div className="relative z-10">
-                  <h2 className="mb-8 text-center text-3xl font-bold tracking-tighter sm:text-4xl">
-                    What Our Users Say
-                  </h2>
-                  <div className="grid gap-6 md:grid-cols-2">
-                    <div className="rounded-lg bg-red-50 dark:bg-red-950/50 p-6">
-                      <p className="mb-4 italic text-gray-600">
-                        "The Meme Mubarak feature had our family WhatsApp group
-                        laughing for days! Best Eid ever!"
-                      </p>
-                      <p className="font-medium">- Ahmed K.</p>
-                    </div>
-                    <div className="rounded-lg bg-red-50 dark:bg-red-950/50 p-6">
-                      <p className="mb-4 italic text-gray-600">
-                        "Meat Mate saved us so much time calculating Qurbani
-                        shares. Highly recommended!"
-                      </p>
-                      <p className="font-medium">- Fatima S.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <TestimonialSection />
 
         {/* FAQ Section */}
         <section className="py-16 md:py-24">
