@@ -1,8 +1,11 @@
+import MmBanner from '@/components/dashboard/meme-mubarak/mm-banner'
 import React from 'react'
 
 const MemeMubarakPage = () => {
   return (
-    <div>MemeMubarakPage</div>
+    <div>
+       <MmBanner />
+    </div>
   )
 }
 
