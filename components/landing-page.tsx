@@ -53,7 +53,7 @@ export default function LandingPage() {
     },
     {
       name: "Contact",
-      link: "#contact",
+      link: "https://wa.me/+8801324207023?text=I%20want%20to%20work%20with%20you",
     },
   ];
   const { user, isLoading, supabase } = useSupabase();
