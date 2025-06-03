@@ -7,19 +7,21 @@ import { useRef, useState } from "react";
 import { toast } from "./ui/use-toast";
 import html2canvas from "html2canvas";
 import type { ImageData } from "@/types/image";
-import { useRouter } from "next/navigation";
 
 interface EditorHeaderProps {
   image: ImageData | null;
   onAddText: () => void;
+  onUploadImage: (file: File) => Promise<void>;
 }
 
-export function EditorHeader({ image, onAddText }: EditorHeaderProps) {
+export function EditorHeader({
+  image,
+  onAddText,
+  onUploadImage,
+}: EditorHeaderProps) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [isDownloading, setIsDownloading] = useState(false);
   const editorRef = useRef<HTMLDivElement | null>(null);
-  const router = useRouter()
-
-  console.log(router)
 
   const handleDownload = async () => {
     if (!editorRef.current) {
@@ -67,9 +69,16 @@ export function EditorHeader({ image, onAddText }: EditorHeaderProps) {
   };
 
   const handleCreateNew = () => {
-    router.push("/editor/new")
-  }
+    fileInputRef.current?.click();
+  };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    onUploadImage(file);
+    e.target.value = "";
+  };
 
   return (
     <header className="border-b">
@@ -85,10 +94,19 @@ export function EditorHeader({ image, onAddText }: EditorHeaderProps) {
         </div>
         <div className="flex items-center gap-2">
           {image ? (
-            <Button onClick={handleCreateNew}>
-              <Upload className="h-4 w-4 mr-2" />
-              Upload Image
-            </Button>
+            <>
+              <Button onClick={handleCreateNew}>
+                <Upload className="h-4 w-4 mr-2" />
+                Upload Template
+              </Button>
+              <input
+                type="file"
+                ref={fileInputRef}
+                className="hidden"
+                accept="image/*"
+                onChange={handleFileChange}
+              />
+            </>
           ) : null}
           <Button
             variant="outline"

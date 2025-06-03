@@ -10,8 +10,7 @@ import { Upload } from "lucide-react";
 interface ImageData {
   id: string;
   title: string;
-  originalUrl: string;
-  foregroundUrl: string;
+  url: string;
   text_layers: any[];
   created_at: string;
 }
@@ -44,7 +43,6 @@ interface ImageEditorProps {
   onUpdateLayer: (index: number, updates: Partial<TextLayer>) => void;
   onUploadImage: (file: File) => Promise<void>;
   isLoading: boolean;
-  isProcessing: boolean;
 }
 
 export function ImageEditor({
@@ -55,7 +53,6 @@ export function ImageEditor({
   onUpdateLayer,
   onUploadImage,
   isLoading,
-  isProcessing,
 }: ImageEditorProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const editorRef = useRef<HTMLDivElement>(null);
@@ -68,6 +65,7 @@ export function ImageEditor({
 
   const handleUploadClick = () => {
     fileInputRef.current?.click();
+   
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -145,32 +143,22 @@ export function ImageEditor({
     );
   }
 
-  if (isProcessing) {
-    return (
-      <div className="flex flex-col items-center justify-center w-full h-full max-w-md mx-auto p-6">
-        <div className="mb-6 text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary mb-4 mx-auto"></div>
-          <h2 className="text-2xl font-bold mb-2">Processing Image</h2>
-          <p className="text-gray-500 dark:text-gray-400">
-            Preparing your image... This may take a moment.
-          </p>
-        </div>
-      </div>
-    );
-  }
-
   if (!image) {
     return (
       <div className="flex flex-col items-center justify-center w-full h-full max-w-md mx-auto p-6">
         <div className="mb-6 text-center">
-          <h2 className="text-2xl font-bold mb-2">Upload an Image</h2>
+          <h2 className="text-2xl font-bold mb-2">
+            Upload a Template to Start Creating!
+          </h2>
           <p className="text-gray-500 dark:text-gray-400">
-            Upload an image to start adding text behind it
+            Add your own image or design to begin crafting your personalized Eid
+            content. Whether it's a meme or a heartfelt card, you&apos;re just one
+            upload away from sharing something special.
           </p>
         </div>
         <Button onClick={handleUploadClick} className="gap-2">
           <Upload className="h-4 w-4" />
-          Upload Image
+          Upload Template
         </Button>
         <input
           type="file"
@@ -191,74 +179,57 @@ export function ImageEditor({
       onMouseMove={draggedLayerIndex !== null ? handleMouseMove : undefined}
       onMouseUp={handleMouseUp}
     >
-      {/* Background (original image) */}
-      <div className="absolute inset-0 z-0">
-        <div className="w-full h-full bg-white dark:bg-gray-900">
-          <Image
-            src={image.originalUrl || "/placeholder.svg"}
-            alt={image.title || "Original image"}
-            fill
-            className="object-cover"
-            onLoad={() => setImageLoaded(true)}
-          />
-        </div>
-      </div>
+      {/* Main image */}
+      <div className="relative w-full h-auto">
+        <Image
+          src={image.url || "/placeholder.svg"}
+          alt={image.title || "Image"}
+          width={800}
+          height={600}
+          className="w-full h-auto"
+          onLoad={() => setImageLoaded(true)}
+          priority
+        />
 
-      {/* Text layers (top layer) */}
-      <div className="absolute inset-0 z-30 pointer-events-none">
-        {textLayers.map((layer, index) => (
-          <div
-            key={layer.id}
-            className={`absolute cursor-move pointer-events-auto ${
-              selectedLayerIndex === index ? " " : ""
-            }`}
-            style={{
-              left: `${layer.x}%`,
-              top: `${layer.y}%`,
-              transformOrigin: "center",
-              transform: `scale(${layer.scale || 1}) skew(${layer.tiltX || 0}deg, ${layer.tiltY || 0}deg) rotate(${layer.rotation || 0}deg)`,
-              opacity: layer.opacity,
-              color: layer.color,
-              fontFamily: layer.font,
-              fontSize: `${layer.size}px`,
-              fontWeight: layer.weight,
-              letterSpacing: layer.letterSpacing
-                ? `${layer.letterSpacing}px`
-                : "normal",
-              textShadow: layer.textShadow || "none",
-              // mixBlendMode: layer.blendMode || "normal",
-              // zIndex: layer.zIndex || 10,
-              lineHeight: 1.2,
-              maxWidth: "80%",
-              textAlign: "center",
-              whiteSpace: "pre-wrap",
-              wordBreak: "break-word",
-              userSelect: "none",
-              transition: "text-shadow 0.3s ease, transform 0.3s ease",
-            }}
-            onMouseDown={(e) => handleLayerMouseDown(index, e)}
-
-          >
-            {layer.text}
-          </div>
-        ))}
-      </div>
-
-      {/* Foreground (image below text) */}
-      <div className="relative z-10">
-        <div className="w-full h-auto">
-          <Image
-            src={image.foregroundUrl || "/placeholder.svg"}
-            alt={image.title || "Foreground image"}
-            width={800}
-            height={600}
-            className="w-full h-auto"
-            style={{
-              objectFit: "contain",
-              pointerEvents: "none",
-            }}
-            priority
-          />
+        {/* Text layers */}
+        <div className="absolute inset-0 pointer-events-none">
+          {textLayers.map((layer, index) => (
+            <div
+              key={layer.id}
+              className={`absolute cursor-move pointer-events-auto ${
+                selectedLayerIndex === index ? " " : ""
+              }`}
+              style={{
+                left: `${layer.x}%`,
+                top: `${layer.y}%`,
+                transformOrigin: "center",
+                transform: `scale(${layer.scale || 1}) skew(${
+                  layer.tiltX || 0
+                }deg, ${layer.tiltY || 0}deg) rotate(${
+                  layer.rotation || 0
+                }deg)`,
+                opacity: layer.opacity,
+                color: layer.color,
+                fontFamily: layer.font,
+                fontSize: `${layer.size}px`,
+                fontWeight: layer.weight,
+                letterSpacing: layer.letterSpacing
+                  ? `${layer.letterSpacing}px`
+                  : "normal",
+                textShadow: layer.textShadow || "none",
+                lineHeight: 1.2,
+                maxWidth: "80%",
+                textAlign: "center",
+                whiteSpace: "pre-wrap",
+                wordBreak: "break-word",
+                userSelect: "none",
+                transition: "text-shadow 0.3s ease, transform 0.3s ease",
+              }}
+              onMouseDown={(e) => handleLayerMouseDown(index, e)}
+            >
+              {layer.text}
+            </div>
+          ))}
         </div>
       </div>
     </div>

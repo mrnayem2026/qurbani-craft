@@ -161,7 +161,18 @@ export function TextControls({
             </TabsList>
             <ScrollArea className="flex-1">
               <div className="p-4">
-                <TabsContent value="text" className="mt-0 space-y-4">
+                <TabsContent value="text" className="mt-0 space-y-4">           
+                <div className="flex justify-center">
+                    <Button
+                      onClick={() => selectedLayerIndex !== null && onUpdateLayer(selectedLayerIndex, {
+                        size: 36,
+                        weight: 700,
+                        letterSpacing: 1,
+                      })}
+                    >
+                      Reset All
+                    </Button>
+                  </div>
                   <div className="space-y-2">
                     <Label htmlFor="text-content">Text Content</Label>
                     <Input
@@ -219,20 +230,21 @@ export function TextControls({
                       onValueChange={(value) => selectedLayerIndex !== null && onUpdateLayer(selectedLayerIndex, { letterSpacing: value[0] })}
                     />
                   </div>
-                  <div className="flex justify-end">
-                    <Button
-                      variant="secondary"
-                      onClick={() => selectedLayerIndex !== null && onUpdateLayer(selectedLayerIndex, {
-                        size: 36,
-                        weight: 700,
-                        letterSpacing: 1,
-                      })}
-                    >
-                      Reset
-                    </Button>
-                  </div>
                 </TabsContent>
                 <TabsContent value="style" className="mt-0 space-y-4">
+                  
+                <div className="flex justify-center">
+                    <Button
+                      onClick={() => selectedLayerIndex !== null && onUpdateLayer(selectedLayerIndex, {
+                        color: '#fff',
+                        textShadow: 'none',
+                        x: 50,
+                        y: 50,
+                      })}
+                    >
+                      Reset All
+                    </Button>
+                  </div>
                   <div className="space-y-2">
                     <Label htmlFor="text-color">Text Color</Label>
                     <div className="flex gap-2">
@@ -291,19 +303,6 @@ export function TextControls({
                       value={[selectedLayer.y]}
                       onValueChange={(value) => selectedLayerIndex !== null && onUpdateLayer(selectedLayerIndex, { y: value[0] })}
                     />
-                  </div>
-                  <div className="flex justify-end">
-                    <Button
-                      variant="secondary"
-                      onClick={() => selectedLayerIndex !== null && onUpdateLayer(selectedLayerIndex, {
-                        color: '#fff',
-                        textShadow: 'none',
-                        x: 50,
-                        y: 50,
-                      })}
-                    >
-                      Reset
-                    </Button>
                   </div>
                 </TabsContent>
                 <TabsContent value="effects" className="mt-0 space-y-4">
@@ -391,41 +390,6 @@ export function TextControls({
                     />
                   </div>
                 </TabsContent>
-                {/* <TabsContent value="advanced" className="mt-0 space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="blend-mode">Blend Mode</Label>
-                    <Select
-                      value={selectedLayer && selectedLayer.blendMode || "normal"}
-                      onValueChange={(value) => selectedLayerIndex !== null && onUpdateLayer(selectedLayerIndex, { blendMode: value })}
-                    >
-                      <SelectTrigger id="blend-mode">
-                        <SelectValue placeholder="Select a blend mode" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {blendModeOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <Label htmlFor="z-index">Layer Order (Z-Index)</Label>
-                      <span className="text-sm text-gray-500">{selectedLayer.zIndex}</span>
-                    </div>
-                    <Slider
-                      id="z-index"
-                      min={1}
-                      max={20}
-                      step={1}
-                      value={[selectedLayer.zIndex]}
-                      onValueChange={(value) => selectedLayerIndex !== null && onUpdateLayer(selectedLayerIndex, { zIndex: value[0] })}
-                    />
-                    <p className="text-xs text-gray-500 mt-1">Higher values appear closer to the foreground</p>
-                  </div>
-                </TabsContent> */}
               </div>
             </ScrollArea>
           </Tabs>
