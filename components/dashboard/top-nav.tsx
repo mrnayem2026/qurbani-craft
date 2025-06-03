@@ -1,31 +1,53 @@
-"use client"
+"use client";
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import Image from "next/image"
-import { Bell, ChevronRight } from "lucide-react"
-import Profile01 from "./profile-01"
-import Link from "next/link"
-import { ThemeToggle } from "./theme-toggle"
-import { useEffect } from "react"
-import { useState } from "react"
-import { useSupabase } from "../supabase-provider"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import Image from "next/image";
+import { Bell, ChevronRight } from "lucide-react";
+import Profile01 from "./profile-01";
+import Link from "next/link";
+import { ThemeToggle } from "./theme-toggle";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useSupabase } from "../supabase-provider";
 
 interface BreadcrumbItem {
-  label: string
-  href?: string
+  label: string;
+  href?: string;
 }
 
 export default function TopNav() {
-  const breadcrumbs: BreadcrumbItem[] = [
-    { label: "QurbaniCraft", href: "#" },
-    { label: "dashboard", href: "#" },
-  ]
+  const [breadcrumbs, setBreadcrumbs] = useState<BreadcrumbItem[]>([
+    { label: "QurbaniCraft", href: "/" },
+    { label: "dashboard", href: "/dashboard" },
+    { label: "", href: "" },
+  ]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setBreadcrumbs([
+        { label: "QurbaniCraft", href: "/" },
+        { label: "dashboard", href: "/dashboard" },
+        {
+          label: window.location.pathname.includes("/dashboard/")
+            ? window.location.pathname.split("/").pop() || ""
+            : "",
+          href: window.location.pathname,
+        },
+      ]);
+    }
+  }, [window?.location.pathname]);
   const { supabase } = useSupabase();
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     const fetchUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
       setUser(user);
       console.log(user?.user_metadata.avatar_url);
     };
@@ -37,7 +59,9 @@ export default function TopNav() {
       <div className="font-medium text-sm hidden sm:flex items-center space-x-1 truncate max-w-[300px]">
         {breadcrumbs.map((item, index) => (
           <div key={item.label} className="flex items-center">
-            {index > 0 && <ChevronRight className="h-4 w-4 text-gray-500 dark:text-gray-400 mx-1" />}
+            {index > 0 && (
+              <ChevronRight className="h-4 w-4 text-gray-500 dark:text-gray-400 mx-1" />
+            )}
             {item.href ? (
               <Link
                 href={item.href}
@@ -46,14 +70,15 @@ export default function TopNav() {
                 {item.label}
               </Link>
             ) : (
-              <span className="text-gray-900 dark:text-gray-100">{item.label}</span>
+              <span className="text-gray-900 dark:text-gray-100">
+                {item.label}
+              </span>
             )}
           </div>
         ))}
       </div>
 
       <div className="flex items-center gap-2 sm:gap-4 ml-auto sm:ml-0">
-
         <ThemeToggle />
 
         <DropdownMenu>
@@ -71,10 +96,13 @@ export default function TopNav() {
             sideOffset={8}
             className="w-[280px] sm:w-80 bg-background border-border rounded-lg shadow-lg"
           >
-            <Profile01 name={user?.user_metadata.name}  avatar={user?.user_metadata.avatar_url} />
+            <Profile01
+              name={user?.user_metadata.name}
+              avatar={user?.user_metadata.avatar_url}
+            />
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
     </nav>
-  )
+  );
 }
