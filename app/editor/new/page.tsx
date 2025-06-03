@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useSupabase } from "@/components/supabase-provider"
 import { EditorHeader } from "@/components/editor-header"
@@ -12,7 +12,26 @@ import { processImageForLayering } from "@/utils/background-removal-alternative"
 export default function NewEditorPage() {
   const { isLoading } = useSupabase()
   const [isProcessing, setIsProcessing] = useState(false)
+  const [image, setImage] = useState(null)
   const router = useRouter()
+
+  // Handle template parameter from URL
+  const searchParams = new URLSearchParams(window.location.search)
+  const templateUrl = searchParams.get('template')
+
+  // Initialize image from template if provided
+  useEffect(() => {
+    if (templateUrl) {
+      setImage({
+        id: Date.now().toString(),
+        title: 'Template Image',
+        originalUrl: decodeURIComponent(templateUrl),
+        foregroundUrl: decodeURIComponent(templateUrl),
+        text_layers: [],
+        created_at: new Date().toISOString(),
+      })
+    }
+  }, [templateUrl])
 
   const handleImageUpload = async (file: File) => {
     try {
@@ -72,12 +91,12 @@ export default function NewEditorPage() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <EditorHeader image={null} onAddText={() => {}} />
+      <EditorHeader image={image} onAddText={() => {}} />
       <main className="flex-1 flex flex-col lg:flex-row">
         <div className="flex-1 p-4 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
           <ImageEditor
-            image={null}
-            textLayers={[]}
+            image={image}
+            textLayers={image?.text_layers || []}
             selectedLayerIndex={null}
             onSelectLayer={() => {}}
             onUpdateLayer={() => {}}
