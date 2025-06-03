@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const MmBanner = () => {
@@ -16,7 +17,9 @@ const MmBanner = () => {
         </p>
       </div>
       <div>
-        <Button>Generate Your Eid Meme</Button>
+        <Button asChild>
+          <Link href="/editor/new">Generate Your Eid Meme</Link>
+        </Button>
 
         <div className="flex gap-2 justify-center items-center">
           <div className="flex -space-x-2 my-5">
