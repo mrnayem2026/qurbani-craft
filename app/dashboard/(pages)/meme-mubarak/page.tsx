@@ -4,10 +4,10 @@ import React from 'react'
 
 const MemeMubarakPage = () => {
   return (
-    <div>
+    <>
        <MmBanner />
        <MemeTemplate/>
-    </div>
+    </>
   )
 }
 

@@ -10,7 +10,10 @@ const CEBBanner = () => {
       <div>
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
           {" "}
-          Make Your Qurbani Special <br /> with Card-e-Barakah!
+          Make Your Qurbani Special <br /> with{" "}
+          <span className="bg-gradient-to-r from-red-700 to-amber-600 bg-clip-text text-transparent">
+          {" "}Card-e-Barakah!
+          </span>
         </h1>
         <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 py-3">
           Celebrate your sacrifice with something that truly speaks you.

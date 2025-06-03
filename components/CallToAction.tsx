@@ -8,7 +8,7 @@ import { ICallToActionProps } from "@/types";
 
 const CallToAction = ({title,description,buttonText,href}: ICallToActionProps) => {
   return (
-    <div className="container relative bg-[#FEF3F3] mb-20 py-10 px-4 sm:py-14 sm:px-8 md:py-16 md:px-16 lg:py-20 lg:px-24 xl:py-[3.75rem] xl:px-[6rem] 2xl:px-[12rem] rounded-[24px] md:rounded-[35px] overflow-hidden max-w-full">
+    <div className="container relative bg-[#FEF3F3] mb-20 py-10 px-4 sm:py-14 sm:px-8 md:py-16 md:px-16 lg:py-20 lg:px-24 xl:py-[3.75rem] xl:px-[6rem] 2xl:px-[12rem] rounded-[24px] md:rounded-[35px] overflow-hidden">
       <Image 
         src={ctaBg} 
         alt="cta-bg" 
