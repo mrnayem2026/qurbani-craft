@@ -240,13 +240,15 @@ export default function LandingPage() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button
-                    variant="ghost"
-                    className="w-full text-primary hover:text-primary/80 hover:bg-red-50 dark:hover:bg-red-950/50"
-                  >
-                    Try Meme Mubarak
-                    <ChevronRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  <Link href="/dashboard/meme-mubarak" className="w-full">
+                    <Button
+                      variant="ghost"
+                      className="w-full flex items-center justify-center text-primary hover:text-primary/80 hover:bg-red-50 dark:hover:bg-red-950/50"
+                    >
+                      Try Meme Mubarak
+                      <ChevronRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </CardFooter>
               </Card>
 
@@ -276,13 +278,15 @@ export default function LandingPage() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button
-                    variant="ghost"
-                    className="w-full text-primary hover:text-primary/80 hover:bg-red-50 dark:hover:bg-red-950/50"
-                  >
-                    Try Card-e-Barakah
-                    <ChevronRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  <Link href="/dashboard/card-e-barakah" className="w-full">
+                    <Button
+                      variant="ghost"
+                      className="w-full flex items-center justify-center text-primary hover:text-primary/80 hover:bg-red-50 dark:hover:bg-red-950/50"
+                    >
+                      Try Card-e-Barakah
+                      <ChevronRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </CardFooter>
               </Card>
 
@@ -310,13 +314,15 @@ export default function LandingPage() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button
-                    variant="ghost"
-                    className="w-full text-primary hover:text-primary/80 hover:bg-red-50 dark:hover:bg-red-950/50"
-                  >
-                    Try Meat Mate
-                    <ChevronRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  <Link href="/dashboard/meat-mate" className="w-full">
+                    <Button
+                      variant="ghost"
+                      className="w-full flex items-center justify-center text-primary hover:text-primary/80 hover:bg-red-50 dark:hover:bg-red-950/50"
+                    >
+                      Try Meat Mate
+                      <ChevronRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </CardFooter>
               </Card>
             </div>
