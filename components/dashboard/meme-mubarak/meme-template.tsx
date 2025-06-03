@@ -24,7 +24,13 @@ const MemeTemplate = () => {
                 "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
             }}
           >
-            <div className="relative aspect-[3/4] w-full">
+            <motion.div 
+              className="relative aspect-[3/4] w-full"
+              whileHover={{
+                scale: 1.1,
+                transition: { duration: 0.3 }
+              }}
+            >
               <Image
                 src={`/images/meme-template/meme${index}.jpg`}
                 alt={`Meme template ${index}`}
@@ -32,7 +38,7 @@ const MemeTemplate = () => {
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
-            </div>
+            </motion.div>
 
             <div className="absolute bottom-2 left-2 right-2">
               <AnimatePresence>
@@ -45,10 +51,10 @@ const MemeTemplate = () => {
                     className="mt-2"
                   >
                     <Button
-                      className="inline-flex w-full items-center justify-center rounded-md px-4 py-2 text-sm font-medium"
+                      className="inline-flex w-full items-center justify-center rounded-md px-4 py-2 text-xs font-medium"
                       onClick={() => router.push(`/editor/new?template=${encodeURIComponent(`/images/meme-template/meme${index}.jpg`)}`)}
                     >
-                      Use Template
+                      Use This Template
                     </Button>
                   </motion.div>
                 )}
