@@ -1,8 +1,14 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import { DashboardHeader } from "@/components/dashboard-header"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { DashboardHeader } from "@/components/dashboard-header";
 
 export default function SettingsPage() {
   return (
@@ -15,46 +21,74 @@ export default function SettingsPage() {
           <Card className="mb-8">
             <CardHeader>
               <CardTitle>Application Information</CardTitle>
-              <CardDescription>About QurbaniCraft</CardDescription>
+              <CardDescription>
+               QurbaniCraft is your all-in-one Eid toolkit—make memes, design cards, and smartly divide Qurbani meat in just a few clicks.
+              </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-6">
+                <div>
+                  <p className="text-sm font-medium">App Name</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    QurbaniCraft
+                  </p>
+                </div>
                 <div>
                   <p className="text-sm font-medium">Version</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">1.0.0</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    1.0.0
+                  </p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium">Features</p>
-                  <ul className="text-sm text-gray-500 dark:text-gray-400 list-disc pl-5 space-y-1 mt-2">
-                    <li>Unlimited image uploads</li>
-                    <li>Access to 300+ Google Fonts</li>
-                    <li>Advanced text customization</li>
-                    <li>Text positioning behind images</li>
+                  <p className="text-sm font-medium">Description</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Create memes, design cards, and divide Qurbani meat with our
+                    all-in-one Eid celebration toolkit. Whether you're adding
+                    fun to your feed or organizing your Qurbani portions,
+                    QurbaniCraft has everything you need for a joyful and smooth
+                    Eid experience.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-8">
+                  <div>
+                    <p className="text-sm font-medium">Release Date</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      June 5, 2025
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">Last Updated</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      June 5, 2025
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm font-medium">Tech Stack</p>
+                  <ul className="text-sm text-gray-500 dark:text-gray-400 list-disc pl-5 mt-2">
+                    <li>Next.js</li>
+                    <li>React</li>
+                    <li>TypeScript</li>
+                    <li>Tailwind CSS</li>
+                    <li>Shadcn UI</li>
                   </ul>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Privacy & Security</CardTitle>
-              <CardDescription>Information about your data</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div>
-                  <p className="text-sm font-medium">Data Privacy</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    We only store the data necessary to provide our services. Your images and text are stored securely.
-                  </p>
-                </div>
-                <Separator />
-                <div>
-                  <p className="text-sm font-medium">Local Storage</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    Some data may be stored in your browser's local storage for a better user experience.
-                  </p>
+                <div className="flex flex-wrap gap-8">
+                  <div>
+                    <p className="text-sm font-medium">Developer</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      MR Nayem
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">Contact / Support</p>
+                    <a
+                      href="mailto:mrnayem2026@gmail.com"
+                      className="text-sm text-blue-600 hover:underline"
+                    >
+                      mrnayem2026@gmail.com
+                    </a>
+                  </div>
                 </div>
               </div>
             </CardContent>
@@ -62,6 +96,5 @@ export default function SettingsPage() {
         </div>
       </main>
     </div>
-  )
+  );
 }
-

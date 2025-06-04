@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Settings } from "lucide-react";
+import { MoonStar, Settings } from "lucide-react";
 import { Button } from "./ui/button";
 import { useSupabase } from "./supabase-provider";
 import { useToast } from "@/hooks/use-toast";
 
 export function DashboardHeader() {
-  const { supabase } = useSupabase()
-  const { toast } = useToast()
+  const { supabase } = useSupabase();
+  const { toast } = useToast();
 
   const handleSignOut = async () => {
     try {
@@ -41,25 +41,15 @@ export function DashboardHeader() {
     <header className="border-b">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
-          <Image
-            src="/logo.svg"
-            alt="QurbaniCraft Logo"
-            width={32}
-            height={32}
-            className="h-8 w-8"
-          />
-          <span className="font-bold text-xl">QurbaniCraft</span>
+          <MoonStar className="h-5 w-5 text-primary" />
+          <span className="text-lg font-semibold text-primary">
+            QurbaniCraft
+          </span>
         </Link>
         <nav className="flex items-center gap-4">
-          <Button variant="outline" onClick={handleSignOut}>
-            Sign Out
-          </Button>
+          <Button onClick={handleSignOut}>Log Out</Button>
           <Link href="/dashboard" className="text-sm font-medium">
             Dashboard
-          </Link>
-          <Link href="/settings" className="text-sm font-medium">
-            <Settings className="h-4 w-4 inline-block mr-1" />
-            Settings
           </Link>
         </nav>
       </div>

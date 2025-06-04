@@ -3,10 +3,12 @@ import {
   Settings,
   CreditCard,
   FileText,
+  MoveUpRight,
 } from "lucide-react";
 import Image from "next/image";
 import { useToast } from "@/hooks/use-toast";
 import { useSupabase } from "../supabase-provider";
+import Link from "next/link";
 
 interface MenuItem {
   label: string;
@@ -41,24 +43,24 @@ export default function Profile01({
   
 
   const menuItems: MenuItem[] = [
-    {
-      label: "Subscription",
-      value: subscription,
-      href: "#",
-      icon: <CreditCard className="w-4 h-4" />,
-      external: false,
-    },
+    // {
+    //   label: "Subscription",
+    //   value: subscription,
+    //   href: "#",
+    //   icon: <CreditCard className="w-4 h-4" />,
+    //   external: false,
+    // },
     {
       label: "Settings",
-      href: "#",
+      href: "/settings",
       icon: <Settings className="w-4 h-4" />,
     },
-    {
-      label: "Terms & Policies",
-      href: "#",
-      icon: <FileText className="w-4 h-4" />,
-      external: true,
-    },
+    // {
+    //   label: "Terms & Policies",
+    //   href: "#",
+    //   icon: <FileText className="w-4 h-4" />,
+    //   external: true,
+    // },
   ];
 
   const handleSignOut = async () => {
@@ -112,7 +114,7 @@ export default function Profile01({
           </div>
           <div className="h-px bg-zinc-200 dark:bg-zinc-800 my-6" />
           <div className="space-y-2">
-            {/* {menuItems.map((item) => (
+            {menuItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
@@ -129,7 +131,7 @@ export default function Profile01({
                   {item.external && <MoveUpRight className="w-4 h-4" />}
                 </div>
               </Link>
-            ))} */}
+            ))}
 
             <button
               type="button"

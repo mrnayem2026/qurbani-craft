@@ -197,7 +197,7 @@ export default function LandingPage() {
                 />
               </div>
             </div>
-            <QurbaniCountdown/>
+            <QurbaniCountdown />
           </div>
         </section>
 
@@ -363,10 +363,9 @@ export default function LandingPage() {
                     How does the Qurbani meat calculator work?
                   </AccordionTrigger>
                   <AccordionContent>
-                    Our Meat Mate tool allows you to input the total weight of
-                    your Qurbani and the number of shares. It then calculates
-                    the exact distribution according to Islamic guidelines,
-                    ensuring fair division.
+                    Enter total meat weight → see 3 equal shares → optionally
+                    split relatives' and needy’s portions by number of people to
+                    get fair distribution.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-4">
@@ -408,7 +407,8 @@ export default function LandingPage() {
               href="https://x.com/mrnayem4403"
               className="text-sm text-muted-foreground"
             >
-              Building in public <span className="text-primary">@mrnayem4403</span>
+              Building in public{" "}
+              <span className="text-primary">@mrnayem4403</span>
             </Link>
           </div>
         </div>

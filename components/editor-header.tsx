@@ -7,6 +7,7 @@ import { useRef, useState } from "react";
 import { toast } from "./ui/use-toast";
 import html2canvas from "html2canvas";
 import type { ImageData } from "@/types/image";
+import { ThemeToggle } from "./dashboard/theme-toggle";
 
 interface EditorHeaderProps {
   image: ImageData | null;
@@ -93,6 +94,7 @@ export function EditorHeader({
           <h1 className="font-medium">{image ? image.title : "New Image"}</h1>
         </div>
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           {image ? (
             <>
               <Button onClick={handleCreateNew}>

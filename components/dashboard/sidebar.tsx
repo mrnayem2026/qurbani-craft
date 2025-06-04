@@ -104,7 +104,7 @@ export default function Sidebar() {
 
           <div className="px-4 py-4 border-t border-gray-200 dark:border-[#1F1F23]">
             <div className="space-y-1">
-              <NavItem href="#" icon={HelpCircle}>
+              <NavItem href="https://wa.me/+8801324207023?text=I%20want%20to%20work%20with%20you" icon={HelpCircle}>
                 Help
               </NavItem>
             </div>
