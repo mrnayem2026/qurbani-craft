@@ -366,7 +366,7 @@ export default function LandingPage() {
                   </AccordionTrigger>
                   <AccordionContent>
                     Enter total meat weight → see 3 equal shares → optionally
-                    split relatives' and needy’s portions by number of people to
+                    split relatives&apos; and needy&apos;s portions by number of people to
                     get fair distribution.
                   </AccordionContent>
                 </AccordionItem>

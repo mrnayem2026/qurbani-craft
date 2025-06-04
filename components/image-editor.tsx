@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Upload } from "lucide-react";
@@ -60,8 +60,6 @@ export function ImageEditor({
     null
   );
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
 
   const handleUploadClick = () => {
     fileInputRef.current?.click();
@@ -81,7 +79,6 @@ export function ImageEditor({
   const handleLayerMouseDown = (index: number, e: React.MouseEvent) => {
     if (!editorRef.current) return;
 
-    const editorRect = editorRef.current.getBoundingClientRect();
     const layerElement = e.currentTarget as HTMLElement;
     const layerRect = layerElement.getBoundingClientRect();
 
@@ -112,28 +109,7 @@ export function ImageEditor({
     setDraggedLayerIndex(null);
   };
 
-  useEffect(() => {
-    // Add mouse up event listener to the window to handle cases where the mouse is released outside the editor
-    window.addEventListener("mouseup", handleMouseUp);
 
-    // Update canvas size when the editor element is mounted or resized
-    const updateCanvasSize = () => {
-      if (editorRef.current) {
-        setCanvasSize({
-          width: editorRef.current.offsetWidth,
-          height: editorRef.current.offsetHeight,
-        });
-      }
-    };
-
-    updateCanvasSize();
-    window.addEventListener("resize", updateCanvasSize);
-
-    return () => {
-      window.removeEventListener("mouseup", handleMouseUp);
-      window.removeEventListener("resize", updateCanvasSize);
-    };
-  }, []);
 
   if (isLoading) {
     return (
@@ -187,7 +163,6 @@ export function ImageEditor({
           width={800}
           height={600}
           className="w-full h-auto"
-          onLoad={() => setImageLoaded(true)}
           priority
         />
 

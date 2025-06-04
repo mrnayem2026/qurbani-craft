@@ -7,7 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { DashboardHeader } from "@/components/dashboard-header";
 
 export default function SettingsPage() {
@@ -43,7 +42,7 @@ export default function SettingsPage() {
                   <p className="text-sm font-medium">Description</p>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
                     Create memes, design cards, and divide Qurbani meat with our
-                    all-in-one Eid celebration toolkit. Whether you're adding
+                    all-in-one Eid celebration toolkit. Whether you&apos;re adding
                     fun to your feed or organizing your Qurbani portions,
                     QurbaniCraft has everything you need for a joyful and smooth
                     Eid experience.
