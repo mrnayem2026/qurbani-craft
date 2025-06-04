@@ -167,7 +167,7 @@ export default function LandingPage() {
                 <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
                   Celebrate Eid <span className="text-primary">Creatively</span>
                 </h1>
-                <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Create memes, design cards, and divide Qurbani meat with our
                   all-in-one Eid celebration toolkit.
                 </p>
@@ -210,7 +210,7 @@ export default function LandingPage() {
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 Our <span className="text-primary">Festive</span> Features
               </h2>
-              <p className="mx-auto mt-4 max-w-[700px] text-gray-500 md:text-xl/relaxed">
+              <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground md:text-xl/relaxed">
                 Everything you need to make your Eid celebrations more memorable
                 and organized.
               </p>
@@ -400,7 +400,7 @@ export default function LandingPage() {
               QurbaniCraft
             </span>
           </Link>
-          <p className="text-center text-sm text-gray-500 md:text-left">
+          <p className="text-center text-sm text-muted-foreground md:text-left">
             &copy; {new Date().getFullYear()} QurbaniCraft. All rights reserved.
           </p>
           <div className="flex gap-4">
