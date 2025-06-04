@@ -13,7 +13,7 @@ export default function NewEditorPage() {
   const [selectedLayerIndex, setSelectedLayerIndex] = useState<number | null>(
     null
   );
-  const router = useRouter();
+
 
   // Handle template parameter from URL
   const searchParams = new URLSearchParams(window.location.search);

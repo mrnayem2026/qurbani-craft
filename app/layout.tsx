@@ -7,8 +7,8 @@ import { SubscriptionProvider } from "@/components/subscription-provider"
 import { fonts, fontVariables } from "@/lib/fonts-config"
 
 export const metadata = {
-  title: "QurbaniCraft - Add Text Behind Images",
-  description: "Upload images and add customizable text behind them",
+  title: "QurbaniCraft",
+  description: "Create beautiful Qurbani/Eid-ul-Adha themed images with customizable text and designs",
   generator: 'v0.dev'
 }
 

@@ -1,8 +1,5 @@
 "use client"
-import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
-import Image from "next/image";
 import Sidebar from "@/components/dashboard/sidebar";
 import TopNav from "@/components/dashboard/top-nav";
 import { useTheme } from "next-themes"

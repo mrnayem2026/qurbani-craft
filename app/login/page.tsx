@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { MoonStar } from "lucide-react";
 
 export default function LoginPage() {
   const { supabase, isLoading } = useSupabase();
@@ -37,22 +38,19 @@ export default function LoginPage() {
     <div className="flex min-h-screen items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <Link href="/" className="inline-block">
-            <Image
-              src="/placeholder-logo.svg"
-              alt="QurbaniCraft Logo"
-              width={48}
-              height={48}
-              className="mx-auto h-12 w-12"
-            />
+          <Link href="/" className="flex items-center justify-center gap-2">
+            <MoonStar className="h-5 w-5 text-primary" />
+            <span className="text-lg font-semibold text-primary">
+              QurbaniCraft
+            </span>
           </Link>
-          <CardTitle className="mt-4 text-3xl font-bold">
+          <CardTitle className="mt-4 text-3xl font-bold my-8">
             Welcome Back
           </CardTitle>
           <CardDescription>Sign in to your account to continue</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="mt-4">
+          <div className="mb-4">
             <Button
               variant="outline"
               className="w-full mt-4"
