@@ -4,10 +4,10 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Download, Plus, Upload } from "lucide-react";
 import { useRef, useState } from "react";
-import { toast } from "./ui/use-toast";
 import html2canvas from "html2canvas";
 import type { ImageData } from "@/types/image";
 import { ThemeToggle } from "./dashboard/theme-toggle";
+import { toast } from "sonner"
 
 interface EditorHeaderProps {
   image: ImageData | null;
@@ -30,11 +30,12 @@ export function EditorHeader({
     }
 
     if (!editorRef.current) {
-      toast({
-        title: "Error",
-        description: "Could not find the editor element.",
-        variant: "destructive",
-      });
+      toast(
+        "Something went wrong. Please try again later.",
+        {
+          description: "Error downloading image.",
+        }
+      )
       return;
     }
 
@@ -53,17 +54,12 @@ export function EditorHeader({
       link.href = canvas.toDataURL("image/png");
       link.click();
 
-      toast({
-        title: "Image downloaded",
-        description: "Your image has been downloaded successfully.",
+      toast("Image downloaded successfully", {
+        description: "Your image has been saved to your downloads folder.",
       });
     } catch (error) {
       console.error("Error downloading image:", error);
-      toast({
-        title: "Download failed",
-        description: "There was a problem downloading your image.",
-        variant: "destructive",
-      });
+     
     } finally {
       setIsDownloading(false);
     }

@@ -10,7 +10,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useSupabase } from "./supabase-provider"
 import { motion } from "framer-motion"
-import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 
 export default function LandingPagePrev() {

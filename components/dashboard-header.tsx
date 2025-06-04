@@ -1,37 +1,32 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { MoonStar, Settings } from "lucide-react";
 import { Button } from "./ui/button";
 import { useSupabase } from "./supabase-provider";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
+import { NavbarButton } from "./ui/resizable-navbar";
+import UserProfile from "./user-profile";
 
 export function DashboardHeader() {
-  const { supabase } = useSupabase();
-  const { toast } = useToast();
+  const { user, isLoading, supabase } = useSupabase();
 
   const handleSignOut = async () => {
     try {
       const { error } = await supabase.auth.signOut();
       if (error) {
-        toast({
-          variant: "destructive",
-          title: "Sign out failed",
+        toast.error("Sign out failed", {
           description: error.message,
         });
       } else {
-        toast({
-          title: "Signed out successfully",
+        toast.success("Signed out successfully", {
           description: "You have been signed out.",
         });
         window.location.href = "/";
       }
     } catch (error) {
       console.error("Error signing out:", error);
-      toast({
-        variant: "destructive",
-        title: "Sign out failed",
+      toast.error("Sign out failed", {
         description: "An unexpected error occurred.",
       });
     }
@@ -47,7 +42,17 @@ export function DashboardHeader() {
           </span>
         </Link>
         <nav className="flex items-center gap-4">
-          <Button onClick={handleSignOut}>Log Out</Button>
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : user ? (
+            <NavbarButton className="px-0 py-0 bg-transparent rounded-full shadow-none">
+              <UserProfile />
+            </NavbarButton>
+          ) : (
+            <NavbarButton variant="dark" href="/login">
+              Login
+            </NavbarButton>
+          )}
           <Link href="/dashboard" className="text-sm font-medium">
             Dashboard
           </Link>

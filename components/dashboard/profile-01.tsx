@@ -5,9 +5,9 @@ import {
   LayoutDashboardIcon,
 } from "lucide-react";
 import Image from "next/image";
-import { useToast } from "@/hooks/use-toast";
 import { useSupabase } from "../supabase-provider";
 import Link from "next/link";
+import { toast } from "sonner";
 
 interface MenuItem {
   label: string;
@@ -36,7 +36,6 @@ export default function Profile01({
   subscription = defaultProfile.subscription,
 }: Partial<Profile01Props> = defaultProfile) {
   const { supabase } = useSupabase();
-  const { toast } = useToast();
 
 
   
@@ -71,24 +70,19 @@ export default function Profile01({
     try {
       const { error } = await supabase.auth.signOut();
       if (error) {
-        toast({
-          variant: "destructive",
-          title: "Sign out failed",
+        toast.error("Sign out failed", {
           description: error.message,
         });
       } else {
-        toast({
-          title: "Signed out successfully",
+        toast.success("Signed out successfully", {
           description: "You have been signed out.",
         });
         window.location.href = "/";
       }
     } catch (error) {
       console.error("Error signing out:", error);
-      toast({
-        variant: "destructive",
-        title: "Sign out failed",
-        description: "An unexpected error occurred.",
+      toast.error("Sign out failed", {
+        description: "An unexpected error occurred."
       });
     }
   };

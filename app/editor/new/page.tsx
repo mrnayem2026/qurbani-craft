@@ -6,8 +6,8 @@ import { useSupabase } from "@/components/supabase-provider";
 import { EditorHeader } from "@/components/editor-header";
 import { ImageEditor } from "@/components/image-editor";
 import { TextControls } from "@/components/text-controls";
-import { toast } from "@/components/ui/use-toast";
 import { SocialShare } from "@/components/social-share";
+import { toast } from "sonner";
 
 export default function NewEditorPage() {
   const { isLoading } = useSupabase();
@@ -59,18 +59,9 @@ export default function NewEditorPage() {
       // Set the current image
       setImage(newImage);
 
-      toast({
-        title: "Image uploaded",
-        description: "You can now add text to your image.",
-      });
+      toast.success("Image uploaded successfully! You can now add text to your image.");
     } catch (error) {
-      console.error("Error uploading image:", error);
-      toast({
-        title: "Upload failed",
-        description:
-          "There was a problem uploading your image. Please try again.",
-        variant: "destructive",
-      });
+      toast.error("There was a problem uploading your image. Please try again.");
     }
   };
 

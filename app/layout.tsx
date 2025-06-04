@@ -1,10 +1,10 @@
 import type React from "react"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/toaster"
 import { SupabaseProvider } from "@/components/supabase-provider"
 import { SubscriptionProvider } from "@/components/subscription-provider"
 import { fonts, fontVariables } from "@/lib/fonts-config"
+import { Toaster } from "sonner"
 
 export const metadata = {
   title: "QurbaniCraft",
