@@ -234,7 +234,7 @@ export default function QurbaniCountdown() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="text-lg md:text-xl text-gray-600 dark:text-gray-300"
+            className="text-lg md:text-xl text-muted-foreground"
           >
             Friday, June 6th, 2025 at 6:30 PM
           </motion.p>
@@ -276,7 +276,7 @@ export default function QurbaniCountdown() {
             transition={{ delay: 0.8 }}
             className="text-center mt-8"
           >
-            <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
+            <p className="text-muted-foreground text-sm md:text-base">
               May Allah accept our prayers and sacrifices
             </p>
           </motion.div>

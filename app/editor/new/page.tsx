@@ -16,7 +16,7 @@ export default function NewEditorPage() {
   );
 
   // Handle template parameter from URL
-  const searchParams = new URLSearchParams(window.location.search);
+  const searchParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : new URLSearchParams();
   const templateUrl = searchParams.get("template");
 
   // Initialize image from template if provided
