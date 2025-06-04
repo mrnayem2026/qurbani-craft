@@ -7,7 +7,6 @@ import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Copy, Trash2, Type } from "lucide-react"
-import { useSubscription } from "./subscription-provider"
 import { ScrollArea } from "./ui/scroll-area"
 import { FontSelector } from "./font-selector"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
@@ -49,7 +48,6 @@ export function TextControls({
   onDuplicateLayer,
   onDeleteLayer,
 }: TextControlsProps) {
-  const { tier } = useSubscription()
   const [activeTab, setActiveTab] = useState("text")
 
   const selectedLayer = selectedLayerIndex !== null ? textLayers[selectedLayerIndex] : null
@@ -60,24 +58,24 @@ export function TextControls({
     setActiveTab("text")
   }, [selectedLayerIndex])
 
-  const blendModeOptions = [
-    { value: "normal", label: "Normal" },
-    { value: "multiply", label: "Multiply" },
-    { value: "screen", label: "Screen" },
-    { value: "overlay", label: "Overlay" },
-    { value: "darken", label: "Darken" },
-    { value: "lighten", label: "Lighten" },
-    { value: "color-dodge", label: "Color Dodge" },
-    { value: "color-burn", label: "Color Burn" },
-    { value: "hard-light", label: "Hard Light" },
-    { value: "soft-light", label: "Soft Light" },
-    { value: "difference", label: "Difference" },
-    { value: "exclusion", label: "Exclusion" },
-    { value: "hue", label: "Hue" },
-    { value: "saturation", label: "Saturation" },
-    { value: "color", label: "Color" },
-    { value: "luminosity", label: "Luminosity" }
-  ];
+  // const blendModeOptions = [
+  //   { value: "normal", label: "Normal" },
+  //   { value: "multiply", label: "Multiply" },
+  //   { value: "screen", label: "Screen" },
+  //   { value: "overlay", label: "Overlay" },
+  //   { value: "darken", label: "Darken" },
+  //   { value: "lighten", label: "Lighten" },
+  //   { value: "color-dodge", label: "Color Dodge" },
+  //   { value: "color-burn", label: "Color Burn" },
+  //   { value: "hard-light", label: "Hard Light" },
+  //   { value: "soft-light", label: "Soft Light" },
+  //   { value: "difference", label: "Difference" },
+  //   { value: "exclusion", label: "Exclusion" },
+  //   { value: "hue", label: "Hue" },
+  //   { value: "saturation", label: "Saturation" },
+  //   { value: "color", label: "Color" },
+  //   { value: "luminosity", label: "Luminosity" }
+  // ];
 
   const shadowPresets = [
     { value: "none", label: "None" },
@@ -95,7 +93,7 @@ export function TextControls({
         <Type className="h-12 w-12 text-gray-400 mb-4" />
         <h3 className="text-lg font-medium mb-2">No Text Layers</h3>
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-          Click the "Add Text" button to add your first text layer
+          Click the &quot;Add Text&quot; button to add your first text layer
         </p>
       </div>
     )

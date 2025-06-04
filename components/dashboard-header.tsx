@@ -1,36 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { MoonStar, Settings } from "lucide-react";
-import { Button } from "./ui/button";
+import { MoonStar } from "lucide-react";
 import { useSupabase } from "./supabase-provider";
-import { toast } from "sonner";
 import { NavbarButton } from "./ui/resizable-navbar";
 import UserProfile from "./user-profile";
 
 export function DashboardHeader() {
-  const { user, isLoading, supabase } = useSupabase();
-
-  const handleSignOut = async () => {
-    try {
-      const { error } = await supabase.auth.signOut();
-      if (error) {
-        toast.error("Sign out failed", {
-          description: error.message,
-        });
-      } else {
-        toast.success("Signed out successfully", {
-          description: "You have been signed out.",
-        });
-        window.location.href = "/";
-      }
-    } catch (error) {
-      console.error("Error signing out:", error);
-      toast.error("Sign out failed", {
-        description: "An unexpected error occurred.",
-      });
-    }
-  };
+  const { user, isLoading } = useSupabase();
 
   return (
     <header className="border-b">

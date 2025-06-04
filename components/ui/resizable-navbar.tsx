@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { AlignJustify, IceCream, LetterTextIcon, MoonStar, X } from "lucide-react";
+import { AlignJustify, MoonStar, X } from "lucide-react";
 import {
   motion,
   AnimatePresence,
@@ -195,7 +195,6 @@ export const MobileNavMenu = ({
   children,
   className,
   isOpen,
-  onClose,
 }: MobileNavMenuProps) => {
   return (
     <AnimatePresence>
@@ -232,13 +231,13 @@ export const MobileNavToggle = ({
 
 export const NavbarLogo = () => {
   return (
-    <a
+    <Link
       href="/"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
       <MoonStar className="h-6 w-6 text-primary" />
       <span className="text-xl font-bold text-primary">QurbaniCraft</span>
-    </a>
+    </Link>
   );
 };
 

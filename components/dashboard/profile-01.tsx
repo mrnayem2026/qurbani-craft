@@ -33,7 +33,7 @@ const defaultProfile = {
 export default function Profile01({
   name = defaultProfile.name,
   avatar = defaultProfile.avatar,
-  subscription = defaultProfile.subscription,
+  // subscription = defaultProfile.subscription,
 }: Partial<Profile01Props> = defaultProfile) {
   const { supabase } = useSupabase();
 

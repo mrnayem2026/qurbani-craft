@@ -41,8 +41,7 @@ export function SupabaseProvider({ children }: { children: React.ReactNode }) {
       }
 
       const {
-        data: { session },
-        error,
+        data: { session }
       } = await supabase.auth.getSession()
       setSession(session)
       setUser(session?.user ?? null)

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useSupabase } from "@/components/supabase-provider";
 import { EditorHeader } from "@/components/editor-header";
 import { ImageEditor } from "@/components/image-editor";
@@ -60,7 +59,7 @@ export default function NewEditorPage() {
       setImage(newImage);
 
       toast.success("Image uploaded successfully! You can now add text to your image.");
-    } catch (error) {
+    } catch (_error) {
       toast.error("There was a problem uploading your image. Please try again.");
     }
   };
@@ -109,7 +108,7 @@ export default function NewEditorPage() {
           // Update local storage
           const storedImages = localStorage.getItem("QurbaniCraft_images");
           const images = storedImages ? JSON.parse(storedImages) : [];
-          const updatedImages = images.map((img: any) =>
+          const updatedImages = images.map((img: { id: string; text_layers: any[]; title: string; url: string; created_at: string }) =>
             img.id === image.id ? updatedImage : img
           );
           localStorage.setItem(
@@ -135,7 +134,7 @@ export default function NewEditorPage() {
               // Update local storage
               const storedImages = localStorage.getItem("QurbaniCraft_images");
               const images = storedImages ? JSON.parse(storedImages) : [];
-              const updatedImages = images.map((img: any) =>
+              const updatedImages = images.map((img: { id: string; text_layers: any[]; title: string; url: string; created_at: string }) =>
                 img.id === image.id ? updatedImage : img
               );
               localStorage.setItem(
@@ -148,8 +147,7 @@ export default function NewEditorPage() {
           />
           {/* Social Share Buttons */}
           {image && (
-            <div className="mt-6">
-              {/* @ts-ignore */}
+            <div className="mt-6">        
               <SocialShare
                 imageUrl={image.url}
                 caption={"Check out my Eid creation!"}
