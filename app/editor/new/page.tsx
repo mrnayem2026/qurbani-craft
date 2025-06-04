@@ -7,13 +7,14 @@ import { EditorHeader } from "@/components/editor-header";
 import { ImageEditor } from "@/components/image-editor";
 import { TextControls } from "@/components/text-controls";
 import { toast } from "@/components/ui/use-toast";
+import { SocialShare } from "@/components/social-share";
+
 export default function NewEditorPage() {
   const { isLoading } = useSupabase();
   const [image, setImage] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState<number | null>(
     null
   );
-
 
   // Handle template parameter from URL
   const searchParams = new URLSearchParams(window.location.search);
@@ -127,7 +128,7 @@ export default function NewEditorPage() {
         }}
       />
       <main className="flex-1 flex flex-col lg:flex-row">
-        <div className="flex-1 p-4 flex items-center justify-center">
+        <div className="flex-1 p-4 flex items-center justify-center flex-col">
           <ImageEditor
             image={image}
             textLayers={image?.text_layers || []}
@@ -154,6 +155,16 @@ export default function NewEditorPage() {
             onUploadImage={handleImageUpload}
             isLoading={false}
           />
+          {/* Social Share Buttons */}
+          {image && (
+            <div className="mt-6">
+              {/* @ts-ignore */}
+              <SocialShare
+                imageUrl={image.url}
+                caption={"Check out my Eid creation!"}
+              />
+            </div>
+          )}
         </div>
         <div className="w-full lg:w-80 xl:w-96 border-t lg:border-t-0 lg:border-l">
           <TextControls
