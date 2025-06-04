@@ -1,18 +1,11 @@
 "use client";
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import Image from "next/image";
-import { Bell, ChevronRight } from "lucide-react";
-import Profile01 from "./profile-01";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useSupabase } from "../supabase-provider";
+import UserProfile from "../user-profile";
 
 interface BreadcrumbItem {
   label: string;
@@ -40,19 +33,6 @@ export default function TopNav() {
       ]);
     }
   }, [window?.location.pathname]);
-  const { supabase } = useSupabase();
-  const [user, setUser] = useState<any>(null);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      setUser(user);
-      console.log(user?.user_metadata.avatar_url);
-    };
-    fetchUser();
-  }, [supabase]);
 
   return (
     <nav className="px-3 sm:px-6 flex items-center justify-between  border-b border-gray-200 dark:border-[#1F1F23] h-full">
@@ -80,28 +60,7 @@ export default function TopNav() {
 
       <div className="flex items-center gap-2 sm:gap-4 ml-auto sm:ml-0">
         <ThemeToggle />
-
-        <DropdownMenu>
-          <DropdownMenuTrigger className="focus:outline-none">
-            <Image
-              src={user?.user_metadata.avatar_url}
-              alt="User avatar"
-              width={28}
-              height={28}
-              className="rounded-full ring-2 ring-gray-200 dark:ring-[#2B2B30] sm:w-8 sm:h-8 cursor-pointer"
-            />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            align="end"
-            sideOffset={8}
-            className="w-[280px] sm:w-80 bg-background border-border rounded-lg shadow-lg"
-          >
-            <Profile01
-              name={user?.user_metadata.name}
-              avatar={user?.user_metadata.avatar_url}
-            />
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <UserProfile />
       </div>
     </nav>
   );

@@ -1,9 +1,8 @@
 import {
   LogOut,
   Settings,
-  CreditCard,
-  FileText,
   MoveUpRight,
+  LayoutDashboardIcon,
 } from "lucide-react";
 import Image from "next/image";
 import { useToast } from "@/hooks/use-toast";
@@ -50,6 +49,11 @@ export default function Profile01({
     //   icon: <CreditCard className="w-4 h-4" />,
     //   external: false,
     // },
+    {
+      label: "Dashboard",
+      href: "/dashboard",
+      icon: <LayoutDashboardIcon className="w-4 h-4" />,
+    },
     {
       label: "Settings",
       href: "/settings",

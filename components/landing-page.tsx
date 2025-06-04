@@ -39,6 +39,7 @@ import MeatMate from "@/public/images/meat-mate.jpg";
 import TestimonialSection from "./testimonial-section";
 import CallToAction from "./CallToAction";
 import QurbaniCountdown from "./qurbani-countdown";
+import UserProfile from "./user-profile";
 
 export default function LandingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -73,11 +74,12 @@ export default function LandingPage() {
             <NavItems items={navItems} />
             <div className="flex items-center gap-4">
               <ThemeToggle />
+
               {isLoading ? (
                 <div>Loading...</div>
               ) : user ? (
-                <NavbarButton variant="dark" onClick={handleSignOut}>
-                  Log Out
+                <NavbarButton className="px-0 py-0 bg-transparent rounded-full shadow-none">
+                  <UserProfile />
                 </NavbarButton>
               ) : (
                 <NavbarButton variant="dark" href="/login">
